@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f2f7f0"
     tools:context="efan.com.bluetooh_shouzhang.MainActivity">
 
+
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="42dp"
-        android:background="@mipmap/topone"
-        android:id="@+id/imageView" />
+        android:background="@mipmap/topone" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="#00c91f"
         android:gravity="center"
         android:text="设备控制"
         android:textColor="#ffffff"
-        android:textSize="18dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="18dp" />
 
     <RelativeLayout
         android:id="@+id/tiwen"
@@ -45,7 +45,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="10dp"
-            android:src="@mipmap/tiwen"/>
+            android:src="@mipmap/tiwen" />
 
         <TextView
 
@@ -62,20 +62,20 @@
         android:id="@+id/xinlv"
         android:layout_width="110dp"
         android:layout_height="110dp"
+        android:layout_alignStart="@+id/hujiao"
+        android:layout_below="@+id/imageView"
         android:layout_marginRight="47dp"
         android:layout_marginTop="38dp"
-        android:background="@drawable/shape_two"
-        android:layout_below="@+id/imageView"
-        android:layout_alignStart="@+id/hujiao">
+        android:background="@drawable/shape_two">
 
         <ImageView
-android:background="@mipmap/xinlv"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/xinlv" />
 
         <TextView
 
@@ -87,25 +87,26 @@ android:background="@mipmap/xinlv"
             android:text="心率检测"
             android:textColor="#ffffff" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/dingwei"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"
-        android:layout_marginTop="390dp"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="47dp"
         android:layout_marginStart="37dp"
+        android:layout_marginTop="390dp"
         android:background="@drawable/shape_three">
 
         <ImageView
-android:background="@mipmap/dingwei"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/dingwei" />
 
         <TextView
 
@@ -117,25 +118,25 @@ android:background="@mipmap/dingwei"
             android:text="定位"
             android:textColor="#ffffff" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/hujiao"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_alignParentEnd="true"
-
         android:layout_marginEnd="33dp"
         android:layout_marginRight="47dp"
         android:layout_marginTop="390dp"
         android:background="@drawable/shape_four">
 
         <ImageView
-android:background="@mipmap/hujiao"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/hujiao" />
 
         <TextView
 
@@ -146,5 +147,118 @@ android:background="@mipmap/hujiao"
             android:layout_marginBottom="25dp"
             android:text="远程呼叫"
             android:textColor="#ffffff" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/deng"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="@mipmap/normal"
+        android:onClick="Do" />
+
+    <RelativeLayout
+        android:id="@+id/moni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/off"
+            android:layout_width="63dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+
+            android:text="OFF" />
+
+        <Button
+            android:id="@+id/button_send"
+            android:layout_width="63dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/off"
+            android:text="ON" />
+
+        <Button
+            android:id="@+id/button_clean"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/off"
+            android:onClick="onMyButtonClick"
+            android:text="@string/button_clean"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/button_break"
+            android:layout_width="31dp"
+            android:layout_height="21dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/menu"
+            android:onClick="onMyButtonClick" />
+
+        <Button
+            android:id="@+id/button_full_screen"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/button_break"
+            android:onClick="onMyButtonClick"
+            android:text="@string/button_full_screen"
+            android:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/radioMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioMale"
+            android:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/checkBox_sixteen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkBox_sixteen"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="200dp"
+            android:layout_height="240dp"
+            android:layout_alignParentBottom="true"
+
+
+            android:layout_alignParentEnd="true"
+            android:background="#ffffff"
+            android:scrollbars="vertical"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/edit_text_out"
+            android:layout_width="160dp"
+            android:layout_height="64dp"
+            android:ellipsize="end"
+            android:inputType="textMultiLine"
+            android:visibility="gone">
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/edit_text_out2"
+            android:layout_width="160dp"
+            android:layout_height="64dp"
+            android:digits="0123456789ABCDEF"
+            android:ellipsize="end"
+            android:inputType="textMultiLine"
+            android:visibility="gone">
+
+            <requestFocus />
+        </EditText>
     </RelativeLayout>
 </RelativeLayout>

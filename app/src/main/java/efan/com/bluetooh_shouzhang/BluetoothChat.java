@@ -22,6 +22,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -47,7 +48,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import yuanjiao.ZQImageViewRoundOval;
@@ -110,6 +119,7 @@ public class BluetoothChat extends AppCompatActivity {
     private int sum = 1;
     private int UTF = 1;
     private ZQImageViewRoundOval ddd;
+    private ImageView back;
 
 
     // 名社民党记录当创建服务器套接字
@@ -128,8 +138,15 @@ public class BluetoothChat extends AppCompatActivity {
         // 设置窗口布局
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
+        back = (ImageView) findViewById(R.id.back);
+        back.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BluetoothChat.this.finish();
+            }
+        });
 
-
+        initMPANdroidchat();
 //        initview();
 
 
@@ -139,7 +156,7 @@ public class BluetoothChat extends AppCompatActivity {
         mInputEditText.clearFocus();
         mInputEditText.setFocusable(false);
         //设置ImageView
-        ImageLogoView = (ImageView) findViewById(R.id.imagelogo);
+
 
         // 设置文本的标题
 
@@ -205,13 +222,20 @@ public class BluetoothChat extends AppCompatActivity {
             }
         });
     }
-//圆角变换
-//    private void initview() {
-//        ddd = (ZQImageViewRoundOval) findViewById(R.id.ddd);
-//
-//        ddd.setType(ZQImageViewRoundOval.TYPE_ROUND);
-//        ddd.setRoundRadius(12);
-//    }
+
+    private void initMPANdroidchat() {
+        LineChart mChart;
+
+        mChart = (LineChart) findViewById(R.id.chart1);
+        mChart.setDescription("体温检测表");//设置统计图标注
+
+        mChart.setData(getLineData());
+        LineData mLineData = getLineData();
+        showChart(mChart, mLineData, Color.rgb(114, 188, 223));
+
+
+    }
+
 
     @Override
     public void onStart() {
@@ -676,4 +700,42 @@ public class BluetoothChat extends AppCompatActivity {
         }
         return true;
     }
+
+    //折线图
+    private void showChart(LineChart lineChart, LineData lineData, int color) {
+    }
+
+    private LineData getLineData() {
+
+        final int DATA_COUNT = 1;  //设置折线图横跨距离
+        LineDataSet dataSetA = new LineDataSet(getChartData(DATA_COUNT, 1), "A");
+        //设置折线数据 getChartData返回一个List<Entry>键值对集合标识 折线点的横纵坐标，"A"代表折线标识
+        LineDataSet dataSetB = new LineDataSet(getChartData(DATA_COUNT, 2), "B");
+        List<ILineDataSet> dataSets = new ArrayList<>();
+        dataSets.add(dataSetA);
+        dataSets.add(dataSetB);
+        LineData data = new LineData(dataSets);
+
+        return data;
+
+        // 返回LineData类型数据，该类型由标识X轴单位 List<String>的 集合和一个标识折线数据的List<ILineDataSet>组成
+    }
+
+    private List<Entry> getChartData(int count, int ratio) {
+        List<Entry> chartData = new ArrayList<>();
+//        for (int i = 0; i < count; i++) {
+//            chartData.add(new Entry(i * 2 * ratio, i));
+//        }
+        chartData.add(new Entry(2, 8));
+        chartData.add(new Entry(3, 20));
+        chartData.add(new Entry(4, 10));
+        chartData.add(new Entry(5, 37));
+
+
+//        }
+        return chartData;
+    }
+
+
+
 }
